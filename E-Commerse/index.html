@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoltStore | Next-Gen Electronics & Premium Tech</title>
+  <meta name="description" content="Shop the latest audio gear, laptops, smartwatches, cameras, and gaming accessories. Fast delivery, 30-day returns, and dual Light & Dark mode support.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+
+  <!-- Top Announcement Promo Bar -->
+  <div class="promo-bar">
+    <span>⚡ Flash Sale: Get 15% OFF your entire order with code <span class="promo-code-tag">SAVE15</span> • Free Express Shipping on orders over $100</span>
+  </div>
+
+  <!-- Header Navigation Bar -->
+  <header class="header">
+    <div class="container nav-row">
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="VoltStore Home">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <span>Volt<span style="color: var(--accent);">Store</span></span>
+      </a>
+
+      <!-- Live Search Input -->
+      <div class="search-container">
+        <div class="search-input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search headphones, laptops, smartwatches, cameras..." autocomplete="off">
+          <button id="clearSearchBtn" class="clear-search-btn" title="Clear search">✕</button>
+        </div>
+      </div>
+
+      <!-- Header Actions: Theme Switcher, Wishlist, Cart -->
+      <div class="header-actions">
+        <!-- Dual Theme Toggle (Light & Dark Mode) -->
+        <div class="theme-switch" role="group" aria-label="Theme Mode Selection">
+          <button class="theme-btn active" id="btnThemeLight" title="Switch to Light Theme (Optimal for standard brightness)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <span>Light</span>
+          </button>
+          <button class="theme-btn" id="btnThemeDark" title="Switch to Dark Theme">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span>Dark</span>
+          </button>
+        </div>
+
+        <!-- Wishlist Icon -->
+        <button class="action-icon-btn" id="wishlistOpenBtn" title="Saved Wishlist" onclick="showToast('Your saved items are highlighted on products with ❤️', 'heart')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="badge-count" id="wishlistCountBadge" style="display: none;">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button class="action-icon-btn" id="cartOpenBtn" title="View Shopping Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="badge-count cart-count-badge" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Storefront Container -->
+  <main class="container">
+    <!-- Promotional Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <span class="hero-tag">Special Weekend Deal</span>
+        <h1 class="hero-title">Experience Sound & Speed Like Never Before</h1>
+        <p class="hero-desc">Discover the new standard in noise cancellation, OLED displays, and Apple M3 architecture. Hand-picked tech delivered directly to your doorstep.</p>
+        <button class="hero-btn" onclick="document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });">
+          <span>Shop New Arrivals</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Products Catalog Section -->
+    <section id="productsSection">
+      <!-- Filter and Category Tabs Row -->
+      <div class="catalog-controls">
+        <div class="categories-bar">
+          <button class="category-tab active" data-category="all">All Products</button>
+          <button class="category-tab" data-category="audio">Audio & Headphones</button>
+          <button class="category-tab" data-category="computers">Laptops & Phones</button>
+          <button class="category-tab" data-category="wearables">Smartwatches</button>
+          <button class="category-tab" data-category="gaming">Gaming & Keyboards</button>
+          <button class="category-tab" data-category="cameras">Photography & Drones</button>
+        </div>
+
+        <div class="filter-sort-row">
+          <span class="result-count" id="resultCount">Showing 12 products</span>
+
+          <div class="sort-group">
+            <label for="sortSelect" class="sort-label">Sort by:</label>
+            <select id="sortSelect" class="sort-select">
+              <option value="featured">Featured Picks</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+              <option value="reviews">Most Reviewed</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid (Populated dynamically by app.js) -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-Out Cart Drawer -->
+  <div class="cart-overlay" id="cartOverlay">
+    <aside class="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping Cart">
+      <!-- Cart Header -->
+      <div class="cart-header">
+        <h3 class="cart-title">
+          <span>Shopping Cart</span>
+          <span class="badge-count cart-count-badge" style="position: static; font-size: 0.8rem; height: 22px; padding: 0 8px;">0</span>
+        </h3>
+        <button class="close-drawer-btn" id="closeCartBtn" aria-label="Close cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Free Shipping Meter -->
+      <div class="shipping-meter-wrap">
+        <div id="shippingMeterText">Add $100.00 more to qualify for Free Shipping!</div>
+        <div class="meter-bar">
+          <div class="meter-fill" id="shippingMeterFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Cart Items List Container -->
+      <div class="cart-items-list" id="cartItemsList">
+        <!-- Items inserted dynamically -->
+      </div>
+
+      <!-- Cart Footer / Totals & Checkout -->
+      <div class="cart-footer">
+        <div class="coupon-row">
+          <input type="text" id="couponInput" class="coupon-input" placeholder="Promo code (try SAVE15)">
+          <button id="couponApplyBtn" class="coupon-btn">Apply</button>
+        </div>
+
+        <div class="cart-summary-line">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+
+        <div class="cart-summary-line" id="cartDiscountRow" style="display: none; color: #16a34a; font-weight: 700;">
+          <span>Promo Discount</span>
+          <span id="cartDiscount">-$0.00</span>
+        </div>
+
+        <div class="cart-summary-line">
+          <span>Estimated Shipping</span>
+          <span id="cartShipping">FREE</span>
+        </div>
+
+        <div class="cart-summary-line">
+          <span>Estimated Tax (8%)</span>
+          <span id="cartTax">$0.00</span>
+        </div>
+
+        <div class="cart-total-line">
+          <span>Order Total</span>
+          <span id="cartTotal" style="color: var(--accent);">$0.00</span>
+        </div>
+
+        <button class="checkout-btn" id="checkoutBtn">
+          <span>Proceed to Checkout</span>
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Product Details Quick View Modal -->
+  <div class="modal-backdrop" id="productModal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeProductModalBtn" aria-label="Close modal">✕</button>
+
+      <div class="modal-image-col">
+        <img id="modalImg" src="" alt="Product Image" class="modal-product-img">
+      </div>
+
+      <div class="modal-info-col">
+        <div>
+          <div class="product-meta" id="modalBrand">Brand</div>
+          <h2 style="font-size: 1.45rem; font-weight: 800; line-height: 1.25; margin: 4px 0 10px;" id="modalTitle">Product Title</h2>
+
+          <div class="product-rating" style="margin-bottom: 14px;">
+            <div class="stars" id="modalStars">★★★★★</div>
+            <span id="modalRatingText" style="font-size: 0.85rem; color: var(--text-muted);">4.8 (120 reviews)</span>
+          </div>
+
+          <div class="product-price-row" style="margin-bottom: 16px;">
+            <span class="price-current" style="font-size: 1.6rem;" id="modalPrice">$0.00</span>
+            <span class="price-original" style="font-size: 1.1rem;" id="modalOriginalPrice">$0.00</span>
+          </div>
+
+          <p class="modal-desc" id="modalDesc">Product description goes here.</p>
+        </div>
+
+        <div>
+          <div style="margin-bottom: 18px;">
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase;">Available Colors / Finishes</div>
+            <div class="variant-picker" id="modalVariants">
+              <!-- Colors inserted dynamically -->
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 6px 12px; background: var(--bg-surface-elevated);">
+              <span style="font-size: 0.85rem; font-weight: 700; margin-right: 8px; color: var(--text-muted);">Qty:</span>
+              <input type="number" id="modalQty" min="1" max="10" value="1" style="width: 44px; border: none; background: transparent; font-size: 0.95rem; font-weight: 800; color: var(--text-primary); text-align: center;">
+            </div>
+
+            <button class="add-to-cart-btn" onclick="addModalProductToCart()" style="flex: 1; padding: 12px 20px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width: 18px; height: 18px;">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              <span>Add to Cart</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Flow Modal -->
+  <div class="modal-backdrop" id="checkoutModal" role="dialog" aria-modal="true">
+    <div class="checkout-modal-card">
+      <button class="modal-close-btn" id="closeCheckoutModalBtn" aria-label="Close checkout">✕</button>
+
+      <div id="checkoutModalContent">
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">Secure Checkout</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem;">Enter your shipping details to complete your order.</p>
+
+        <form id="checkoutForm">
+          <div class="checkout-form-grid">
+            <div class="form-full">
+              <label class="field-label" for="shipName">Full Name *</label>
+              <input type="text" id="shipName" class="field-input" placeholder="e.g. Alex Johnson" required>
+            </div>
+
+            <div class="form-full">
+              <label class="field-label" for="shipEmail">Email Address *</label>
+              <input type="email" id="shipEmail" class="field-input" placeholder="e.g. alex@example.com" required>
+            </div>
+
+            <div class="form-full">
+              <label class="field-label" for="shipAddress">Street Address *</label>
+              <input type="text" id="shipAddress" class="field-input" placeholder="123 Tech Avenue, Suite 400" required>
+            </div>
+
+            <div>
+              <label class="field-label" for="shipCity">City *</label>
+              <input type="text" id="shipCity" class="field-input" placeholder="Bangalore" required>
+            </div>
+
+            <div>
+              <label class="field-label" for="shipPostal">Postal Code *</label>
+              <input type="text" id="shipPostal" class="field-input" placeholder="560001" required>
+            </div>
+
+            <div class="form-full">
+              <label class="field-label">Payment Method</label>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 4px;">
+                <label style="display: flex; align-items: center; gap: 8px; padding: 10px; border: 1px solid var(--accent); background: var(--accent-light); border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 700; cursor: pointer;">
+                  <input type="radio" name="paymentMethod" value="card" checked> Credit/Debit
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px; padding: 10px; border: 1px solid var(--border-color); background: var(--bg-surface-elevated); border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 700; cursor: pointer;">
+                  <input type="radio" name="paymentMethod" value="upi"> UPI / NetBank
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px; padding: 10px; border: 1px solid var(--border-color); background: var(--bg-surface-elevated); border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 700; cursor: pointer;">
+                  <input type="radio" name="paymentMethod" value="cod"> Cash on Delivery
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px solid var(--border-color); margin-top: 14px;">
+            <span style="font-weight: 700; font-size: 1rem;">Total Amount:</span>
+            <span id="checkoutOrderTotal" style="font-size: 1.35rem; font-weight: 800; color: var(--accent);">$0.00</span>
+          </div>
+
+          <button type="submit" class="checkout-btn" id="btnPlaceOrder" style="margin-top: 10px;">
+            <span>Place Order Now</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 14px;">
+            <div class="brand-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <span>Volt<span style="color: var(--accent);">Store</span></span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; max-width: 320px;">
+            Your premier destination for high-fidelity audio, professional cameras, M3 architecture laptops, and cutting-edge gaming peripherals.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="event.preventDefault(); resetFilters();">All Products</a></li>
+            <li><a href="#" onclick="event.preventDefault(); state.activeCategory = 'audio'; renderProducts();">Audio & Speakers</a></li>
+            <li><a href="#" onclick="event.preventDefault(); state.activeCategory = 'computers'; renderProducts();">Laptops & Phones</a></li>
+            <li><a href="#" onclick="event.preventDefault(); state.activeCategory = 'gaming'; renderProducts();">Gaming Peripherals</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">Free 30-Day Returns</a></li>
+            <li><a href="#">Warranty Coverage</a></li>
+            <li><a href="#">Help Center & FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Guaranteed Safe</h4>
+          <div style="display: flex; flex-direction: column; gap: 10px; color: var(--text-muted); font-size: 0.88rem;">
+            <span>🔒 256-Bit SSL Encrypted Checkout</span>
+            <span>📦 Free Insured Delivery Over $100</span>
+            <span>⭐ 4.9/5 Average Customer Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 VoltStore E-Commerce Inc. Handcrafted with HTML5, CSS3, and modern ES6 JavaScript. Dual Light & Dark theme supported.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
